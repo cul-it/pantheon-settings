@@ -6,6 +6,9 @@
 2. Navigate to your Drupal root directory
 3. Add a directory called 'private' if it's not already there
 4. Copy the two expanded simplesamlphp configuration files into the /private directory
+5. Be sure to use the settings.php from this repo 
+	* it sets the the location SimpleSAMLphp Installation directory in /admin/config/people/simplesamlphp_auth
+	* it switches between the test and prod versions depending on the dev/test/live version of the Pantheon site
 
 
 
