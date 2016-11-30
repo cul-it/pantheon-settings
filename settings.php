@@ -143,18 +143,12 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
  * see https://github.com/cul-it/simplesamlphp-pantheon
  * store the absolute path to the pre-configured version of simplesamlphp
  * in the Drupal variable simplesamlphp_auth_installdir
- * depending on if the site is running as the live version or a dev/test version
  */
 if (defined('PANTHEON_ENVIRONMENT')) {
   if (!empty($_SERVER['PRESSFLOW_SETTINGS'])) {
+    $config_version = '/code/private/pantheon-simplesamlphp';
     $ps = json_decode($_SERVER['PRESSFLOW_SETTINGS'], TRUE);
-    if ($_ENV['PANTHEON_ENVIRONMENT'] == 'live') {
-      $config_version = '/code/private/simplesamlphp-pantheon-prod';
-    }
-    else {
-      $config_version = '/code/private/simplesamlphp-pantheon-test';
-    }
-  $conf['simplesamlphp_auth_installdir'] = '/srv/bindings/'. $ps['conf']['pantheon_binding'] . $config_version;
+    $conf['simplesamlphp_auth_installdir'] = '/srv/bindings/'. $ps['conf']['pantheon_binding'] . $config_version;
   }
 }
 
