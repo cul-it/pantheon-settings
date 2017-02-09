@@ -1,7 +1,7 @@
 <?php
 
 /**
- * example settings.local.php file for use on Pantheon Drupal 8 sites
+ * example d8.settings.php file for use on Pantheon Drupal 8 sites
  *
  * Warning
  * You should never put the database connection information for a Pantheon database within your settings.php
