@@ -139,7 +139,7 @@ if (defined('PANTHEON_ENVIRONMENT')) {
     // configuration key is different for D7 vs D8
     $drupal_version = VERSION;
     $drupal_major_version = substr(trim($drupal_version), 0, 1);
-    $conf_key = ($drupal_major_version == '7') ? ß
+    $conf_key = ($drupal_major_version == '7') ?
       'simplesamlphp_auth_installdir' : 'simplesamlphp_dir';
 
     $config_version = '/code/private/pantheon-simplesamlphp';
