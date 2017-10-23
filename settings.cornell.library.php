@@ -127,6 +127,7 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
  // $conf['pantheon_apachesolr_schema'] = 'sites/all/modules/contrib/search_api_solr/solr-conf/solr-3.x/schema.xml';
 }
 
+
 /**
  * support for simplesamlphp
  * see https://github.com/cul-it/simplesamlphp-pantheon
@@ -135,15 +136,20 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
  */
 if (defined('PANTHEON_ENVIRONMENT')) {
   if (!empty($_SERVER['PRESSFLOW_SETTINGS'])) {
-
-    // configuration key is different for D7 vs D8
-    $drupal_version = VERSION;
-    $drupal_major_version = substr(trim($drupal_version), 0, 1);
-    $conf_key = ($drupal_major_version == '7') ?
-      'simplesamlphp_auth_installdir' : 'simplesamlphp_dir';
-
+    // $conf is setup in settings.pantheon.php
     $config_version = '/code/private/pantheon-simplesamlphp';
-    $ps = json_decode($_SERVER['PRESSFLOW_SETTINGS'], TRUE);
-    $conf["$conf_key"] = '/srv/bindings/'. $ps['conf']['pantheon_binding'] . $config_version;
+    if (defined("PANTHEON_VERSION") && (PANTHEON_VERSION >= 3) && !empty($conf) && !empty($conf['pantheon_binding'])) {
+      // for drupal 8
+      $pantheon_binding = $conf['pantheon_binding'];
+      $simplesamldir = '/srv/bindings/'. $pantheon_binding . $config_version;
+      $settings['simplesamlphp_dir'] = $simplesamldir;
+    }
+    else {
+      // for drupal 7
+      $ps = json_decode($_SERVER['PRESSFLOW_SETTINGS'], TRUE);
+      $pantheon_binding = $ps['conf']['pantheon_binding'];
+      $simplesamldir = '/srv/bindings/'. $pantheon_binding . $config_version;
+      $conf['simplesamlphp_auth_installdir'] = $simplesamldir;
+    }
   }
 }
