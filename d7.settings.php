@@ -17,9 +17,7 @@
 
 /**
  * keep the cornell settings in a separate place
+ * include this AFTER settings.pantheon.php for $conf
  * (settings.local.php is in .gitignore)
  */
-$local_settings_cornell_library =  __DIR__ . "/settings.cornell.library.php";
-if (file_exists($local_settings_cornell_library)) {
-  include $local_settings_cornell_library;
-}
+include  __DIR__ . "/settings.cornell.library.php";
