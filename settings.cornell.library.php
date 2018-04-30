@@ -140,16 +140,13 @@ if (defined('PANTHEON_ENVIRONMENT')) {
     $config_version = '/code/private/pantheon-simplesamlphp';
     if (defined("PANTHEON_VERSION") && (PANTHEON_VERSION >= 3) && !empty($conf) && !empty($conf['pantheon_binding'])) {
       // for drupal 8
-      $pantheon_binding = $conf['pantheon_binding'];
-      $simplesamldir = '/srv/bindings/'. $pantheon_binding . $config_version;
-      $settings['simplesamlphp_dir'] = $simplesamldir;
+      # Provide universal absolute path to the installation.
+      $settings['simplesamlphp_dir'] = $_ENV['HOME'] .'/code/private/pantheon-simplesamlphp';
     }
     else {
       // for drupal 7
-      $ps = json_decode($_SERVER['PRESSFLOW_SETTINGS'], TRUE);
-      $pantheon_binding = $ps['conf']['pantheon_binding'];
-      $simplesamldir = '/srv/bindings/'. $pantheon_binding . $config_version;
-      $conf['simplesamlphp_auth_installdir'] = $simplesamldir;
+      # Provide universal absolute path to the installation.
+      $conf['simplesamlphp_auth_installdir'] = $_ENV['HOME'] .'/code/private/pantheon-simplesamlphp';
     }
   }
 }
