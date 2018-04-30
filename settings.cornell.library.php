@@ -142,6 +142,7 @@ if (defined('PANTHEON_ENVIRONMENT')) {
       // for drupal 8
       # Provide universal absolute path to the installation.
       $settings['simplesamlphp_dir'] = $_ENV['HOME'] .'/code/private/pantheon-simplesamlphp';
+      watchdog('info','simplesamlphp_dir: @dir', array('@dir' => $settings['simplesamlphp_dir']));
     }
     else {
       // for drupal 7
