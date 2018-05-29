@@ -151,3 +151,19 @@ if (defined('PANTHEON_ENVIRONMENT')) {
     }
   }
 }
+
+/**
+ * support for proper SERVER_NAME and SERVER_PORT on Pantheon
+ * see https://pantheon.io/docs/server_name-and-server_port/#set-server_port-correctly
+ * This affects the port for redirects after simplesamlphp
+ * see RelayState in 
+ */
+if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
+  if (isset($_SERVER['HTTP_USER_AGENT_HTTPS']) && $_SERVER['HTTP_USER_AGENT_HTTPS'] === 'ON') {
+    $_SERVER['SERVER_PORT'] = 443;
+  }
+  else {
+    $_SERVER['SERVER_PORT'] = 80;
+  }
+}
