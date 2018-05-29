@@ -137,17 +137,16 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
 if (defined('PANTHEON_ENVIRONMENT')) {
   if (!empty($_SERVER['PRESSFLOW_SETTINGS'])) {
     // $conf is setup in settings.pantheon.php
-    $config_version = '/code/private/pantheon-simplesamlphp';
+    $config_version = '/code/private/cul-it-simplesamlphp';
     if (defined("PANTHEON_VERSION") && (PANTHEON_VERSION >= 3) && !empty($conf) && !empty($conf['pantheon_binding'])) {
       // for drupal 8
       # Provide universal absolute path to the installation.
-      $settings['simplesamlphp_dir'] = $_ENV['HOME'] .'/code/private/pantheon-simplesamlphp';
-      watchdog('info','simplesamlphp_dir: @dir', array('@dir' => $settings['simplesamlphp_dir']));
+      $settings['simplesamlphp_dir'] = $_ENV['HOME'] . $config_version;
     }
     else {
       // for drupal 7
       # Provide universal absolute path to the installation.
-      $conf['simplesamlphp_auth_installdir'] = $_ENV['HOME'] .'/code/private/pantheon-simplesamlphp';
+      $conf['simplesamlphp_auth_installdir'] = $_ENV['HOME'] . $config_version;
     }
   }
 }
