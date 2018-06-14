@@ -166,3 +166,11 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
     $_SERVER['SERVER_PORT'] = 80;
   }
 }
+
+/**
+ * site specific settings
+ */
+$local_settings = dirname(__FILE__) . '/settings.special.php';
+if (file_exists($local_settings)) {
+  include $local_settings;
+}
